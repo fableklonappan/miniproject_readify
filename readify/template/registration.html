@@ -191,6 +191,8 @@ function validateConfirmPassword(fieldId) {
 
             <div class="card bg-glass">
               <div class="card-body px-4 py-5 px-md-5">
+
+                
                 <form onsubmit="return validateForm" method="post" >
                   {% csrf_token %}
                   <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -228,7 +230,7 @@ function validateConfirmPassword(fieldId) {
                     <input type="password" id="cpass" name="cpwd"
                       class="form-control" placeholder="Confirm-Password" />
                   </div>
-                  <span id="cpspam"></span>
+                  <span id="cpspan"></span>
                   <!-- Checkbox -->
                   <div class="form-check d-flex justify-content-center mb-4">
                     <input class="form-check-input me-2" type="checkbox" value
