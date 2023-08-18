@@ -51,3 +51,12 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+
+
+
+class BookCategory(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
