@@ -1,0 +1,146 @@
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+    body {
+      background-image: url('{% static "img\portfolio\proflebg.jpeg" %}');
+      background-size: cover;
+      background-position: center;
+      height: 50%;
+      background-repeat: no-repeat;
+    }
+
+    .emp-profile {
+      padding: 1%;
+      margin-top: 3%;
+      border-radius: 0.5rem;
+      opacity: 90%;
+      background: #fff;
+    }
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <!-- Your other navbar content -->
+
+        <!-- Flex container for the search bar and Home button -->
+
+
+            <!-- Home button -->
+            <div class="col-md-6 text-md-start w-100">
+                <a href="{% url 'index' %}" class="btn btn-primary">Home</a>
+            </div>
+        </div>
+    </div>
+</nav>
+  <div class="container emp-profile mb-3">
+    <form method="POST" enctype="multipart/form-data" class="mb-5">
+      {% csrf_token %}
+      <section class="gray pt-5 pb-1">
+        <div class="container-fluid">
+
+          <div class="row justify-content-center">
+
+            <div class="col-lg-9 col-md-8">
+              <div class="dashboard-body">
+
+                <div class="dashboard-wraper">
+                  <div class="row">
+
+                    <div class="col-lg-12 col-md-12">
+                      <div class="submit-page px-0">
+
+                        <!-- Basic Information -->
+                        <div class="frm_submit_block  mb-5">
+                          <div class="frm_submit_wrap">
+                            <div class="row">
+                              <div class="form-group col-md-6 pd-20">
+                                <label class="mt-2 mb-1">First Name</label>
+                                <input type="text" name="first_name" class="form-control" value="{{ user.first_name }}">
+                              </div>
+                              <div class="form-group col-md-6 pd-20">
+                                <label class="mt-2 mb-1">Last Name</label>
+                                <input type="text" name="last_name" class="form-control" value="{{ user.last_name }}">
+                              </div>
+                              <div class="form-group col-md-6 pd-20">
+                                <label class="mt-2 mb-1">Email</label>
+                                <input type="text" name="email" class="form-control" value="{{ user.email }}" disabled>
+                              </div>
+
+                              <div class="form-group col-md-6 pd-20">
+                                <label class="mt-2 mb-1">Phone Number</label>
+                                <input type="text" name="phone_no" class="form-control"
+                                  value="{{ user_profile.phone_no }}">
+                              </div>
+
+                              <div class="form-group col-md-6 pd-20">
+                                <label class="mt-2 mb-1">Address Line 1</label>
+                                <input type="text" name="addressline1" class="form-control"
+                                  value="{{ user_profile.addressline1 }}">
+                              </div>
+                              <div class="form-group col-md-6 pd-20">
+                                <label class="mt-2 mb-1">Address Line 2</label>
+                                <input type="text" name="addressline2" class="form-control"
+                                  value="{{ user_profile.addressline2 }}">
+                              </div>
+                              <div class="form-group col-md-6 pd-20">
+                                <label class="mt-2 mb-1">City</label>
+                                <input type="text" name="city" class="form-control" value="{{ user_profile.city }}">
+                              </div>
+                              <div class="form-group col-md-6 pd-20">
+                                <label class="mt-2 mb-1">District</label>
+                                <input type="text" name="district" class="form-control"
+                                  value="{{ user_profile.district }}">
+                              </div>
+
+                              <div class="form-group col-md-6 pd-20">
+                                <label class="mt-2 mb-1">State</label>
+                                <input type="text" name="state" class="form-control" value="{{ user_profile.state }}">
+                              </div>
+                              <div class="form-group col-md-6 pd-20">
+                                <label class="mt-2 mb-1">country</label>
+                                <input type="text" name="country" class="form-control"
+                                  value="{{ user_profile.country }}">
+                              </div>
+                              <div class="form-group col-md-6 pd-20">
+                                <label class="mt-2 mb-1">pin_code</label>
+                                <input type="text" name="pin_code" class="form-control"
+                                  value="{{ user_profile.pin_code }}">
+                              </div>
+                              <!-- More form fields... -->
+
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-lg-12 col-md-12 text-center">
+                          <button class="btn btn-success" type="submit">Update</button>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <!-- row -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </form>
+  </div>
+</body>
+</html>

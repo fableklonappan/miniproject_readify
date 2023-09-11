@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shopping Cart</title>
+        <!-- Add Bootstrap CSS link -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+    </head>
+    <style>
+  .image-container{
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .image-container img{
+    width: 130px;
+    height: 180px;
+  }
+  .summary-container{
+    height: 300px;
+  }
+  .tfooter{
+    border-top: 2px dotted black;
+  }
+</style>
+    <body>
+        <h1 class="text">Shopping Cart</h1>
+
+        <div class="container row">
+            <div class="col-md-6 col-lg-6 d-flex flex-column">
+
+                {% for i in books %}
+                <div class="card mt-3 p-3">
+                    <div class="d-flex flex-row">
+                        <div class="image-container">
+                            <img src="{{i.picture.url}}" alt="Product 1" class>
+                        </div>
+                        <div class="content-container">
+                            <div class="card-body">
+                                <h5 class="card-title">{{i.title}}</h5>
+                                <p class="card-text"></p>
+                                <p class="card-text">Price: ${{i.price}}</p>
+                                <button class="btn btn-primary"
+                                    data-price="{{i.price}}">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Repeat the product card for other products -->
+
+            <!-- Shopping Cart Summary -->
+            <div class="col-md-6 col-lg-6 summary-container card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Shopping Cart Summary</h5>
+                 
+                    <hr>
+                    <table class="w-100">
+                        <thead>
+                            <th>Item</th>
+                            <th>Price</th>
+                        </thead>
+                        <tbody id="summary-list">
+                            
+                        </tbody>
+                        <tfoot class="tfooter">
+                            <tr>
+                              
+                              <td><b>Total</b></td>
+                              <td>$<b id="total-price"></b></td>
+                            </tr>
+                          </tfoot>
+                    </table>
+
+                    <div class="d-flex justify-content-end w-100 flex-column">
+                        <div class="item-1">
+
+                        </div>
+                        <div class="item-2">
+                        <a href="#" class="btn btn-success mt-4">Checkout</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!-- Add Bootstrap JS and Popper.js for Bootstrap components (at the end of the body for performance) -->
+            <script
+                src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+            <!-- JavaScript to calculate total price when the window is loaded -->
+            <script>
+        window.onload = function() {
+            const cartItems = document.getElementById('cart-items');
+            const totalPriceElement = document.getElementById('total-price');
+            const contentContainers = document.querySelectorAll('.content-container');
+            const summaryList = document.getElementById('summary-list');
+            let totalPrice = 0;
+
+
+
+            function updateTotalPrice(price) {
+                totalPrice += price;
+                totalPriceElement.textContent = totalPrice.toFixed(2);
+            }
+
+            // Loop through the buttons to calculate the initial total when the window is loaded
+            document.querySelectorAll('.btn-primary').forEach((button) => {
+                const price = parseFloat(button.getAttribute('data-price'));
+                updateTotalPrice(price);
+            });
+            contentContainers.forEach(container => {
+                const productName = container.querySelector('.card-title').textContent.trim();
+                const price = parseFloat(container.querySelector('[data-price]').getAttribute('data-price'));
+
+                // Create a new row in the table for each product
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${productName}</td>
+                    <td>$${price.toFixed(2)}</td>
+                `;
+
+                summaryList.appendChild(newRow);
+            });
+            
+        };
+    </script>
+        </body>
+    </html>
