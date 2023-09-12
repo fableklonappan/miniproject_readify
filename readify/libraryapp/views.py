@@ -33,11 +33,17 @@ def add_wishlist(request, bookid3):
         book_id=bookid3        
     )
     book.save()
-    return redirect('wishlist')
+    return redirect('books_view')
 
 def wishlist(request):
     user_id = request.user.id
-    books_in_cart = Book.objects.filter(user_id=user_id)
+    books_in_cart = Wishlist.objects.filter(user_id=user_id)
     book_details = AddBook.objects.filter(id__in=books_in_cart.values_list('book_id', flat=True))
 
     return render(request,"wishlist.html",{'books':book_details})
+
+def delete_record(request, bye):
+    remove=Wishlist.objects.filter(book_id=bye)
+    print(remove)
+    remove.delete()
+    return redirect('wishlist')
