@@ -13,7 +13,7 @@ class AddBook(models.Model):
         return self.title
     
     
-class Book(models.Model):
+class BookCart(models.Model):
     user=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True)
     book=models.ForeignKey(AddBook,on_delete=models.CASCADE,null=True)
     

@@ -37,6 +37,15 @@
     </head>
     <style>
 
+        .image-container{
+            width: fit-content;
+            height: fit-content;
+          }
+        
+          .image-container img{
+            width: 150px;
+            height: 280px;
+          }
     </style>
     <body>
 
@@ -87,7 +96,7 @@
                 <div class="row">
                     <div class="col-md-12 mb-2 ">
                         <div class="card d-flex   flex-row">
-                            <div class="p-3">
+                            <div class="p-3 image-container">
                                 <img src="{{data.picture.url}}" class="card-img-top pt-5 " alt="Book Cover">
                             </div>
                             <div class="card-body">
@@ -97,7 +106,7 @@
                                 <p class="card-text">{{data.summary}}</p>
                                 <p class="card-text">{{data.price}}</p>
                                 <a href="{% url 'add_cart' data.id %}"><button class="btn btn-info">Add to Cart</button></a>
-                                <a href="{% url 'add_wishlist' data.id %}"><button class="btn btn-success ml-50">Add to whishlist</button></a>
+                                <a href="{% url 'add_wishlist' data.id %}"><button class="btn btn-success ml-50">Add to Wishlist</button></a>
                             </div>
                         </div>
                     </div>

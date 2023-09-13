@@ -97,7 +97,7 @@
         <div class="container row">
             <div class="col-md-6 col-lg-6 d-flex flex-column">
 
-                {% for i in books %}
+                {% for i in cart_books %}
                 <div class="card mt-3 p-3">
                     <div class="d-flex flex-row">
                         <div class="image-container">
@@ -108,9 +108,7 @@
                                 <h5 class="card-title">{{i.title}}</h5>
                                 <p class="card-text"></p>
                                 <p class="card-text">Price: ${{i.price}}</p>
-                                <button class="btn btn-primary"
-                                    data-price="{{i.price}}">Add
-                                    to Cart</button>
+                                <a href="{% url 'delete_cart' i.id %}"><button class="btn btn-primary"data-price="{{i.price}}">Remove</button></a>
                             </div>
                         </div>
                     </div>

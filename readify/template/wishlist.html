@@ -34,6 +34,30 @@
         <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
     </head>
+    <style>
+        .image-container{
+            width: fit-content;
+            height: fit-content;
+          }
+        
+          .image-container img{
+            width: 130px;
+            height: 180px;
+          }
+          .custom-margin{
+            margin-top:100px;
+            margin-left:90px;
+            color:red;
+          }
+          hr{
+
+            height:5px;
+           
+          }
+
+    </style>
+
+
 <body>
     <header id="header" class="bg-dark" id="home">
         <div class="container">
@@ -75,26 +99,30 @@
         </div>
     </header>
 
-    <h1 class="text mt-5">My Wishlist</h1>
-
+    <h1 class="text  custom-margin">My Wishlist</h1>
+ 
     <main class="container my-4">
         <section id="wishlist">
+            
             {% csrf_token %}
             {% for data in books%}
-            <h2 class="mb-4">My Items</h2>
+            <h2 class="mb-4">{{data.title}}</h2>
             <ul class="list-unstyled">
                 <li class="media mb-4">
+                    <div class="image-container">
                     <img src="{{data.picture.url}}" alt="Product 1" class="mr-3">
+                    </div>
                     <div class="media-body">
                         <h3 class="mt-0">{{data.title}}</h3>
                         {% comment %} <p>Description of Product 1.</p> {% endcomment %}
                         <p>Price: ${{data.price}}</p>
-                        <a href="{% url 'delete_record' data.id %}"><button class="btn btn-danger remove-button">Remove</button></a>
+                        <a href="{% url 'delete_wishlist' data.id %}"><button class="btn btn-danger remove-button">Remove</button></a>
 
                     </div>
                 </li>             
                 <!-- Add more wishlist items here -->
             </ul>
+            <hr>
             {% endfor %}
         </section>
     </main>

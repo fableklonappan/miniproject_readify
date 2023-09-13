@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import AddBook,Book,Wishlist
+from .models import AddBook,BookCart,Wishlist
 
 # Register your models here.
 
 admin.site.register(AddBook)
-admin.site.register(Book)
+admin.site.register(BookCart)
 admin.site.register(Wishlist)
