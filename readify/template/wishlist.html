@@ -33,28 +33,20 @@
         <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
+         <!-- Add Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     </head>
     <style>
-        .image-container{
-            width: fit-content;
-            height: fit-content;
-          }
-        
-          .image-container img{
-            width: 130px;
-            height: 180px;
+          .custom-h1{
+            margin-top:100px;
+            margin-left:90px;
+            color:black;
           }
           .custom-margin{
             margin-top:100px;
             margin-left:90px;
-            color:red;
+            color:black;
           }
-          hr{
-
-            height:5px;
-           
-          }
-
     </style>
 
 
@@ -64,17 +56,24 @@
             <div
                 class="row align-items-center justify-content-between d-flex">
                 <div id="logo">
-                    <a href="index.html"><img
+                    <a href="{% url 'index' %}"><img
                             src="{% static 'img/logo.png' %}" alt title /></a>
                 </div>
                 <nav id="nav-menu-container">
+                    
                     <ul class="nav-menu">
                         <li class="menu-active"><a href="{% url 'index' %}">Home</a></li>
                         {% if user.is_authenticated %}
-                        <li><a href="#about">About</a></li>
+                        <li><a class="text-black" href="#about">About</a></li>
                         <li><a href="#fact">Fact</a></li>
                         <li><a href="#price">Price</a></li>
-                        <li><a href="{% url 'books_view' %}">books</a></li>
+                        <li class="menu-has-children"><a href>Books</a>
+                            <ul>
+                                <li><a href="{% url 'books_view' %}">Print Copy</a></li>
+                                <li><a href="{% url 'audio_view' %}">Audiobook</a></li>
+                                <li><a href="">E-Books</a></li>
+                            </ul>                               
+                        </li>
                         {% endif %} 
                         <li class="menu-has-children"><a href>My Account</a>
                             <ul>
@@ -89,43 +88,59 @@
                                 {% endif %} 
                             </ul>
                         </li>
-                        {% if user.is_authenticated %}
                         <li><a href="{% url 'cart' %}"><i class="bi bi-cart-check-fill text-primary fs-5 "></i></a></li>
                         <li><a href="{% url 'wishlist' %}"><i class="bi bi-heart-fill text-danger"></i></a></li>
-                        {% endif %} 
                     </ul>
                 </nav><!-- #nav-menu-container -->
             </div>
         </div>
-    </header>
+    </header><!-- #header -->
 
-    <h1 class="text  custom-margin">My Wishlist</h1>
- 
-    <main class="container my-4">
-        <section id="wishlist">
-            
-            {% csrf_token %}
-            {% for data in books%}
-            <h2 class="mb-4">{{data.title}}</h2>
-            <ul class="list-unstyled">
-                <li class="media mb-4">
-                    <div class="image-container">
-                    <img src="{{data.picture.url}}" alt="Product 1" class="mr-3">
-                    </div>
-                    <div class="media-body">
-                        <h3 class="mt-0">{{data.title}}</h3>
-                        {% comment %} <p>Description of Product 1.</p> {% endcomment %}
-                        <p>Price: ${{data.price}}</p>
-                        <a href="{% url 'delete_wishlist' data.id %}"><button class="btn btn-danger remove-button">Remove</button></a>
+    <h1 class="text  custom-h1">My Wishlist</h1>
+    <div class="container mt-5">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col">Stock Status</th>
+                        <th scope="col">Add Wishlist</th>
+                        <th scope="col">Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% csrf_token %}
+                    {% for data in books%}
+                    <tr>
+                        <td>
+                            <div class="media">
+                                <img src="{{data.picture.url}}" alt="Product Image" class="mr-3" style="width: 72px;">
+                                <div class="media-body mt-4">
+                                    <h5>
+                                    {{data.title}}
+                                    </h5>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="pt-5">{{data.price}}</td>
+                        <td><span class="badge badge-success mt-5">In Stock</span></td>
+                        <td>
+                            <a href="{% url 'add_cart' data.id %}"><button class="btn btn-primary mt-4">Add to Cart</button></a>
+                        </td>
+                        <td class="text-center">
+                            <a href="{% url 'delete_wishlist' data.id %}" class="text-danger">
+                                <i class="fas fa-trash-alt mt-5"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <!-- Repeat this row structure for each wishlist item -->
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-                    </div>
-                </li>             
-                <!-- Add more wishlist items here -->
-            </ul>
-            <hr>
-            {% endfor %}
-        </section>
-    </main>
 
           <!-- start footer Area -->
           <footer class="footer-area section-gap">

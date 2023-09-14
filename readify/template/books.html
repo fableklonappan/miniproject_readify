@@ -65,7 +65,13 @@
                             <li><a class="text-black" href="#about">About</a></li>
                             <li><a href="#fact">Fact</a></li>
                             <li><a href="#price">Price</a></li>
-                            <li><a href="{% url 'books_view' %}">books</a></li>
+                            <li class="menu-has-children"><a href>Books</a>
+                                <ul>
+                                    <li><a href="{% url 'books_view' %}">Print Copy</a></li>
+                                    <li><a href="{% url 'audio_view' %}">Audiobook</a></li>
+                                    <li><a href="">E-Books</a></li>
+                                </ul>                               
+                            </li>
                             {% endif %} 
                             <li class="menu-has-children"><a href>My Account</a>
                                 <ul>
@@ -98,15 +104,15 @@
                         <div class="card d-flex   flex-row">
                             <div class="p-3 image-container">
                                 <img src="{{data.picture.url}}" class="card-img-top pt-5 " alt="Book Cover">
+                                <h4 class="text-success mt-2 ml-2">Price: ${{data.price}}</h4>
                             </div>
                             <div class="card-body">
-                                <h2 class="card-title">{{data.title}}</h2>
-                                <p class="card-text">{{data.author_name}}</p>
-                                <p class="card-text text-italic">{{data.publisher}}</p>
+                                <h2 class="card-title text-primary">{{data.title}}</h2>
+                                <p class="card-text"><strong>{{data.author_name}}</strong></p>
+                                <p class="card-text text-italic"><strong>{{data.publisher}}</strong></p>
                                 <p class="card-text">{{data.summary}}</p>
-                                <p class="card-text">{{data.price}}</p>
-                                <a href="{% url 'add_cart' data.id %}"><button class="btn btn-info">Add to Cart</button></a>
-                                <a href="{% url 'add_wishlist' data.id %}"><button class="btn btn-success ml-50">Add to Wishlist</button></a>
+                                <a href="{% url 'add_cart' data.id %}"><button class="btn btn-outline-info w-25 ml-50 mt-10"><i class="bi bi-cart-plus pr-3"></i>Add to Cart</button></a>
+                                <a href="{% url 'add_wishlist' data.id %}"><button class="btn btn-outline-danger ml-50 w-25 mt-10"><i class="bi bi-suit-heart-fill pr-3"></i>Add to Wishlist</button></a>
                             </div>
                         </div>
                     </div>

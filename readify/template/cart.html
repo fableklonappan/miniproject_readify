@@ -22,6 +22,7 @@
             href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
             rel="stylesheet">
 
+            
         <!--
         CSS
         ============================================= -->
@@ -35,6 +36,12 @@
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
     </head>
     <style>
+    .custom-h1{
+            margin-top:100px;
+            margin-bottom: 30px;
+            margin-left:90px;
+            color:black;
+          }
   .image-container{
     width: fit-content;
     height: fit-content;
@@ -58,17 +65,24 @@
                 <div
                     class="row align-items-center justify-content-between d-flex">
                     <div id="logo">
-                        <a href="index.html"><img
+                        <a href="{% url 'index' %}"><img
                                 src="{% static 'img/logo.png' %}" alt title /></a>
                     </div>
                     <nav id="nav-menu-container">
+                        
                         <ul class="nav-menu">
                             <li class="menu-active"><a href="{% url 'index' %}">Home</a></li>
                             {% if user.is_authenticated %}
-                            <li><a href="#about">About</a></li>
+                            <li><a class="text-black" href="#about">About</a></li>
                             <li><a href="#fact">Fact</a></li>
                             <li><a href="#price">Price</a></li>
-                            <li><a href="{% url 'books_view' %}">books</a></li>
+                            <li class="menu-has-children"><a href>Books</a>
+                                <ul>
+                                    <li><a href="{% url 'books_view' %}">Print Copy</a></li>
+                                    <li><a href="{% url 'audio_view' %}">Audiobook</a></li>
+                                    <li><a href="">E-Books</a></li>
+                                </ul>                               
+                            </li>
                             {% endif %} 
                             <li class="menu-has-children"><a href>My Account</a>
                                 <ul>
@@ -92,13 +106,13 @@
         </header><!-- #header -->
 
 
-        <h1 class="text mt-5">Shopping Cart</h1>
+        <h1 class="text custom-h1">Shopping Cart</h1>
 
         <div class="container row">
             <div class="col-md-6 col-lg-6 d-flex flex-column">
 
                 {% for i in cart_books %}
-                <div class="card mt-3 p-3">
+                <div class="card mt-1 p-3 mb-4 card-edit">
                     <div class="d-flex flex-row">
                         <div class="image-container">
                             <img src="{{i.picture.url}}" alt="Product 1" class>
@@ -108,7 +122,7 @@
                                 <h5 class="card-title">{{i.title}}</h5>
                                 <p class="card-text"></p>
                                 <p class="card-text">Price: ${{i.price}}</p>
-                                <a href="{% url 'delete_cart' i.id %}"><button class="btn btn-primary"data-price="{{i.price}}">Remove</button></a>
+                                <a href="{% url 'delete_cart' i.id %}"><button class="btn btn-outline-danger ml-5 "data-price="{{i.price}}"><i class="bi bi-trash pl-3"></i>Remove</button></a>
                             </div>
                         </div>
                     </div>
@@ -119,7 +133,7 @@
             <!-- Repeat the product card for other products -->
 
             <!-- Shopping Cart Summary -->
-            <div class="col-md-6 col-lg-6 summary-container card mt-3">
+            <div class="col-md-6 col-md-6 summary-container card mt-1 mb-5">
                 <div class="card-body">
                     <h5 class="card-title">Shopping Cart Summary</h5>
                  
@@ -175,7 +189,7 @@
             }
 
             // Loop through the buttons to calculate the initial total when the window is loaded
-            document.querySelectorAll('.btn-primary').forEach((button) => {
+            document.querySelectorAll('.btn-outline-danger').forEach((button) => {
                 const price = parseFloat(button.getAttribute('data-price'));
                 updateTotalPrice(price);
             });

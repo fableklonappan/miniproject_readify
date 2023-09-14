@@ -11,5 +11,5 @@ urlpatterns = [
      path('add_wishlist/<int:bookid3>/', views.add_wishlist, name='add_wishlist'),
      path('wishlist',views.wishlist,name="wishlist"),
      path('delete_wishlist/<int:bye>/', views.delete_wishlist, name='delete_wishlist'),
-     
+     path('audio_view/', views.audio_view, name='audio_view'),
 ]

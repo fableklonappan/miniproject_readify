@@ -38,7 +38,7 @@
     </head>
     <body>
 
-        <header id="header" id="home">
+        <header id="header" class="bg-dark" id="home">
             <div class="container">
                 <div
                     class="row align-items-center justify-content-between d-flex">
@@ -53,8 +53,14 @@
                             <li><a href="#about">About</a></li>
                             <li><a href="#fact">Fact</a></li>
                             <li><a href="#price">Price</a></li>
-                            <li><a href="{% url 'books_view' %}">books</a></li>
-                            {% endif %} 
+                            <li class="menu-has-children"><a href>Books</a>
+                                <ul>
+                                    <li><a href="{% url 'books_view' %}">Print Copy</a></li>
+                                    <li><a href="{% url 'audio_view' %}">Audiobook</a></li>
+                                    <li><a href="">E-Books</a></li>
+                                </ul>                               
+                            </li>
+                            {% endif %}
                             <li class="menu-has-children"><a href>My Account</a>
                                 <ul>
                                     {% if user.is_authenticated %}
@@ -71,11 +77,7 @@
                             {% if user.is_authenticated %}
                             <li><a href="{% url 'cart' %}"><i class="bi bi-cart-check-fill text-primary fs-5 "></i></a></li>
                              <li><a href="{% url 'wishlist' %}"><i class="bi bi-heart-fill text-danger"></i></a></li>
-                           <!-- <li><lord-icon src="https://cdn.lordicon.com/xryjrepg.json"
-                            trigger="loop"
-                            colors="primary:#e83a30"
-                            style="width:50px;height:20px">
-                            </lord-icon> </li> -->
+
                             {% endif %} 
                         </ul>
                     </nav><!-- #nav-menu-container -->
@@ -83,6 +85,7 @@
             </div>
         </header><!-- #header -->
 
+        
         <!-- start banner Area -->
         <section class="banner-area" id="home">
             <div class="container">
@@ -217,7 +220,7 @@
                     <div class="col-lg-4">
                         <div class="single-price no-padding">
                             <div class="price-top">
-                                <h4>PDF</h4>
+                                <h4>Audio Books</h4>
                             </div>
                             <p>
                                 Who are in extremely love with <br>
@@ -225,8 +228,7 @@
                             </p>
                             <div class="price-bottom">
                                 <h1><span>$</span> 79.99</h1>
-                                <a href="#" class="primary-btn header-btn">Purchase
-                                    Now</a>
+                                <a href="{% url 'audio_view' %}" class="primary-btn header-btn">Purchase Now</a>
                             </div>
                         </div>
                     </div>
@@ -257,7 +259,7 @@
                             </p>
                             <div class="price-bottom">
                                 <h1><span>$</span> 59.99</h1>
-                                <a href="#" class="primary-btn">Purchase Now</a>
+                                <a href="{% url 'books_view' %}" class="primary-btn">Purchase Now</a>
                             </div>
                         </div>
                     </div>

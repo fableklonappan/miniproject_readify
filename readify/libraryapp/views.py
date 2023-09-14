@@ -1,6 +1,6 @@
 from urllib import request
 from django.shortcuts import redirect, render
-from .models import AddBook,BookCart,Wishlist
+from .models import AddBook,BookCart,Wishlist,AudioBook
 
 # Create your views here.
 def books_view(request):
@@ -51,3 +51,10 @@ def delete_wishlist(request, bye):
     remove=Wishlist.objects.filter(book_id=bye)
     remove.delete()
     return redirect('wishlist')
+
+def audio_view(request):
+    return render(request,'audiobooks.html')
+
+def audio_view(request):
+    audiobook = AudioBook.objects.all()
+    return render(request,'audiobooks.html', {'audiobook':audiobook})
