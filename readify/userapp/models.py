@@ -53,15 +53,6 @@ class CustomUser(AbstractUser):
         return self.email
 
 
-
-class BookCategory(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
-    
-    
 class UserProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, blank=True, null=True)
     country = models.CharField(max_length=15, blank=True, null=True)

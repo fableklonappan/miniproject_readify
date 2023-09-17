@@ -12,4 +12,5 @@ urlpatterns = [
      path('wishlist',views.wishlist,name="wishlist"),
      path('delete_wishlist/<int:bye>/', views.delete_wishlist, name='delete_wishlist'),
      path('audio_view/', views.audio_view, name='audio_view'),
+     path('pdf_view/', views.pdf_view, name='pdf_view'),
 ]

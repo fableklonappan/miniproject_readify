@@ -39,3 +39,21 @@ class AudioBook(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.title
+    
+class BookCategory(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+    
+    
+class PdfBook(models.Model):
+    book_name = models.CharField(max_length=255)
+    author_name = models.CharField(max_length=255)
+    page_number = models.PositiveIntegerField()
+    cover_image = models.ImageField(upload_to='pdf_covers/', blank=True, null=True)
+    pdf_file = models.FileField(upload_to='book_pdfs/', blank=True, null=True)
+    
+    def __str__(self):
+        return self.book_name

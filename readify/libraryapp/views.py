@@ -1,6 +1,6 @@
 from urllib import request
 from django.shortcuts import redirect, render
-from .models import AddBook,BookCart,Wishlist,AudioBook
+from .models import AddBook,BookCart,Wishlist,AudioBook,PdfBook
 
 # Create your views here.
 def books_view(request):
@@ -58,3 +58,7 @@ def audio_view(request):
 def audio_view(request):
     audiobook = AudioBook.objects.all()
     return render(request,'audiobooks.html', {'audiobook':audiobook})
+
+def pdf_view(request):
+    pdfbook = PdfBook.objects.all()
+    return render(request,'pdfbooks.html', {'pdfbook':pdfbook})

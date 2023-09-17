@@ -23,9 +23,7 @@
             href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
             rel="stylesheet">
 
-        <!--
-        CSS
-        ============================================= -->
+        <!--CSS ============================================= -->
         <link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
         <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
@@ -69,7 +67,7 @@
                                 <ul>
                                     <li><a href="{% url 'books_view' %}">Print Copy</a></li>
                                     <li><a href="{% url 'audio_view' %}">Audiobook</a></li>
-                                    <li><a href="">E-Books</a></li>
+                                    <li><a href="{% url 'pdf_view' %}">E-Books</a></li>
                                 </ul>                               
                             </li>
                             {% endif %} 

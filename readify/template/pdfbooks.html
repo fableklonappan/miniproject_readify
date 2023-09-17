@@ -49,7 +49,7 @@
         
           .image-container img{
             width: 150px;
-            height: 280px;
+            height: 220px;
           }
     </style>
     <body>
@@ -99,51 +99,33 @@
             </div>
         </header><!-- #header -->
 
-            <h1 class="text custom-h1"> Audio books</h1>
+        <h1 class="text custom-h1">PDF books</h1>
+        <div class="container mt-4 mb-4">
             <div class="row">
-                <div class="container mt-4 mb-4">
-                    <div class="row">
-                        <div class="col-md-12 mt-2">    
-                            <div class="card d-flex   flex-row">
-                                {% for i in audiobook %}
-                                <div class="p-3  image-container">
-                                    <img src="{{ i.cover_image.url }}" class="card-img-top pt-4 "
-                                        alt="Book Cover">
-                                </div>
-                                <div
-                                
-                                    class="card-body d-flex flex-row align-items-center">
-                                    <div class="left">
-                                        <h3 class="card-title">{{ i.title }}</h3>
-                                        <p class="card-text"><strong>Author:</strong>{{ i.author }}</p>
-                                        <p class="card-text"><strong>Duration:</strong>{{ i.duration }} minutes</p>
-                                        <p class="card-text"><strong>Narrator:</strong>
-                                            {{ i.narrator }}</p>
-                                        <p class="card-text"><strong>Publication
-                                                Date:</strong>
-                                                {{ i.publication_date }}</p>
-                                    </div>
-    
-                                    <div class="right d-flex flex-column w-75 ml-5">
-    
-                                        <a href="{{ i.audio_file.url }}" download
-                                            class="btn btn-outline-info btn-lg"><i
-                                                class="bi bi-download "></i>
-                                            Download
-                                            Audiobook</a>
-                                        <a href=""
-                                            class="btn btn-outline-success mt-3 btn-lg"><i
-                                                class="bi bi-bookmarks"></i> Go to
-                                            favorites</a>
-                                    </div>
-                                {% endfor %}
-                                </div>
+                {% for i in pdfbook %}
+                <div class="col-md-12 mt-2">
+                    <div class="card d-flex flex-row ml-3">
+                        <div class="p-3 image-container">
+                            <img src="{{ i.cover_image.url }}" class="card-img-top pt-4" alt="Book Cover">
+                        </div>
+                        <div class="card-body d-flex flex-row align-items-center">
+                            <div class="left pr-30">
+                                <h3 class="card-title">{{ i.book_name }}</h3>
+                                <p class="card-text"><strong>Author:</strong> {{ i.author_name }}</p>
+                                <p class="card-text"><strong>{{ i.page_number }} pages</strong></p>
+                            </div>
+                            <div class="right d-flex flex-column w-75 ml-5">
+                                <a href="{{ i.pdf_file.url }}" download class="btn btn-outline-info btn-lg w-75 ml-5"><i class="bi bi-download"></i> Download PDF</a>
+                                <a href="" class="btn btn-outline-success mt-3 btn-lg w-75 ml-5"><i class="bi bi-bookmarks"></i> Go to favorites</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-
+        </div>
+        
+        
         <!-- start footer Area -->
         
         <footer class="footer-area section-gap">
